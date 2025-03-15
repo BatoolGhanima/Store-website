@@ -1,25 +1,87 @@
-import axios from "axios";
-import { ProductShow } from "./ProductShow";
-import React, { useEffect, useState } from 'react'
+import Products from "./products/Products"
+import Home from './Pages/home/Home'
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Layout from "./Pages/Layout"
+import Profile from "./Pages/Profile"
+import Card from './Card'
+import AuthProvider from "./Pages/auth/AuthProvider"
+import Favorite from "./Pages/favorite/Favorite"
+import Details from "./Pages/Details"
+import ProtectedRout from "./Pages/ProtectedRout"
+const router = createBrowserRouter([
+
+  {
+    path: '/',
+    element: <Layout />,
+   
+    children: [
+      {
+        path: '/',
+        element: (
+       
+            <Home />
+            
+        )
+         
+      },
+      {
+        path: '/profile',
+        element: <Profile />
+      },
+      {
+        path: '/product',
+        element:
+          <ProtectedRout>
+             <Products /> 
+          </ProtectedRout>
+        
+      },
+      {
+        path: '/details/:id',
+        element:
+        <ProtectedRout>
+             <Details />
+          </ProtectedRout>
+          
+      },
+      {
+        path: '/card',
+        element:
+        <ProtectedRout>
+          <Card />
+     </ProtectedRout>
+        
+      },
+      {
+        path: '/favorite',
+        element: <Favorite />
+      }
+     
+    ]
+  }
+
+
+])
+
 function App() {
 
-  const [product, setProduct] = useState([])
-  const [error, setError] = useState("")
 
-  useEffect(() => {
-    const getData = async () => {
-      await axios
-        .get("https://dummyjson.com/products")
-        .then((res) => setProduct(res.data.products))
-        .catch((err) => setError(err.message))
-
-    }
-    getData();
-  }, [])
+ 
   return (
     <>
+      {/* <AuthProvider>
+        {token ? (
+          <RouterProvider router={router}></RouterProvider>
 
-      <ProductShow title={"welcome in our gallery"} description={" we display a product and a discription of it, in addition to the category it belongs to and its price in dollar"} product={product} error={error}> </ProductShow>
+        ) : (
+          <Profile></Profile>
+        )}
+      </AuthProvider> */}
+
+      <AuthProvider >
+        <RouterProvider router={router}></RouterProvider>
+      </AuthProvider>
+
 
     </>
   )
