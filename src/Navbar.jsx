@@ -1,12 +1,11 @@
 import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import { CiMenuBurger } from "react-icons/ci";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import useCounterStore from "./products/Store";
 import useFavoriteCounter from "./Pages/favorite/favoriteStore";
 import { FaShoppingCart } from "react-icons/fa";
 import favoriteSideBarContext from './Pages/favorite/favoriteSideBarContext'
-import { CgArrowLongLeft } from "react-icons/cg";
 
 const Navbar = ()=> {
   const [isOpen, setIsOpen] = useState(false);

@@ -5,7 +5,7 @@ const DetailsProduct = ({ product }) => {
     const { data } = useContext(productContext)
     const { incrementProduct } = useProductCounterStore();
 
-    let total = 0;
+    
 
     return (
     

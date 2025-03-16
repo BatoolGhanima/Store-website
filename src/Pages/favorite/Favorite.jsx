@@ -29,7 +29,7 @@ const Favorite = () => {
                     animate={{ x: 0 }}
                     exit={{ y: "100%" }}
                     transition={{ duration: 0.3 }}
-                    className="fixed top-0 left-0  w-3/4 md:w-1/2 lg:w-1/3 h-full  bg-gradient-to-r from-purple-500  to-blue-400/100  text-white shadow-lg md:hidden flex flex-col items-center  space-y-6 z-30"
+                    className="fixed top-0 left-0  w-3/4 md:w-1/2 lg:w-1/3 h-full  bg-gradient-to-r from-purple-500  to-blue-400/100  text-white shadow-lg md:hidden flex flex-col items-center overflow-auto  space-y-6 z-30"
                     style={{ display: isFavOpen ? "flex" : "none" }}
                 >
                     <h1 className="mt-6 text-2xl font-bold ">Your Favorite Products </h1>
