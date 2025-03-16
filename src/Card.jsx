@@ -2,16 +2,16 @@ import { useContext } from 'react'
 import productContext from './products/productContext'
 import useProductCounterStore from './products/productCounterSotre';
 import { MdDelete } from "react-icons/md";
-import useCounterStore from './products/Store';
+import useCounterStore from './products/store';
 import { Link } from 'react-router-dom';
 function Card() {
-  const { data , setData } = useContext(productContext)
+  const { data, setData } = useContext(productContext)
   const { productCounters, incrementProduct, decrementProduct } = useProductCounterStore();
-const {dicrement} = useCounterStore()
+  const { dicrement } = useCounterStore()
   const total = data.reduce((total, item) => total + item.price * productCounters[item.id], 0)
   console.log(total)
 
-  const deleteProduct = ((id  , setNew) => {
+  const deleteProduct = ((id, setNew) => {
     setNew(prevData => prevData.filter(item => item.id !== id))
     dicrement()
   });
@@ -42,7 +42,7 @@ const {dicrement} = useCounterStore()
                   <button
                     onClick={() => decrementProduct(p.id)}
                     className='bg-red-800/20 rounded-l-none px-4 py-1 rounded-lg m-1 text-[25px] hover:bg-red-700 transition-all mr-6'>-</button>
-                      <button onClick={()=>{deleteProduct(p.id , setData)}}> <MdDelete  size={40} fill='red'/> </button>
+                  <button onClick={() => { deleteProduct(p.id, setData) }}> <MdDelete size={40} fill='red' /> </button>
 
                 </div>
               </div>
@@ -51,20 +51,20 @@ const {dicrement} = useCounterStore()
 
           ))
         ) : (
-            <div> 
-              <h2>There is no product</h2>
-              <button className="image-button hover:text-2xl transition-all m-4 " onClick={()=>setIsFavOpen(false)}> <Link to={'/product'}>Shopping</Link> </button>  
+          <div>
+            <h2>There is no product</h2>
+            <button className="image-button hover:text-2xl transition-all m-4 " onClick={() => setIsFavOpen(false)}> <Link to={'/product'}>Shopping</Link> </button>
 
-            </div>
+          </div>
         )}
         <div className='w-full bg-gradient-to-r from-blue-500 to-purple-600 h-[70px] fixed bottom-0 text-white font-bold p-12  text-2xl flex justify-around items-center'>
           <p>  the total: ${(total)} </p>
           <button className=" bg-blue-100/30 px-4 py-2 rounded-lg hover:bg-blue-100/20 hover:text-[26px] transition-all"> Regular Check out </button>
 
         </div>
-        
+
       </div>
-      
+
     </div>
   )
 }

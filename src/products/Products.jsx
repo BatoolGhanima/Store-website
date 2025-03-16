@@ -1,7 +1,7 @@
-import { useContext ,useState } from 'react'
+import { useContext, useState } from 'react'
 import { motion } from 'framer-motion'
 import useProduct from './useProduct'
-import useCounterStore from './Store'
+import useCounterStore from './store'
 import productContext from './productContext'
 import useProductCounterStore from './productCounterSotre'
 import { FaHeart } from "react-icons/fa6";
@@ -86,11 +86,11 @@ const Products = () => {
 
                   {/* <button onClick={() => removeFromFavorites(p.id, setFavorite)}> delete </button> */}
 
-               
+
 
                 </div>
-                </div>
-              
+              </div>
+
             </motion.div>
           ))}
         </motion.div>

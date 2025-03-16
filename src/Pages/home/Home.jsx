@@ -7,7 +7,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import useProduct from '../../products/useProduct';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useContext } from 'react'
-import useCounterStore from '../../products/Store';
+import useCounterStore from '../../products/store';
 import productContext from '../../products/productContext'
 import useProductCounterStore from '../../products/productCounterSotre'
 import 'swiper/css'
@@ -78,7 +78,7 @@ const Home = () => {
               pagination={{ clickable: false }}
               centeredSlides={true}
               loop={true}
-              autoplay={{ delay: 3000, disableOnInteraction: true }} 
+              autoplay={{ delay: 3000, disableOnInteraction: true }}
               breakpoints={{
                 640: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },
