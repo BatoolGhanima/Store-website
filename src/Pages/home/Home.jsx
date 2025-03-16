@@ -78,8 +78,7 @@ const Home = () => {
               pagination={{ clickable: false }}
               centeredSlides={true}
               loop={true}
-
-              autoplay={{ delay: 3000, disableOnInteraction: true }} // تفعيل التشغيل التلقائي
+              autoplay={{ delay: 3000, disableOnInteraction: true }} 
               breakpoints={{
                 640: { slidesPerView: 1 },
                 768: { slidesPerView: 2 },
