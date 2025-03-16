@@ -1,15 +1,13 @@
-import { useContext, useReducer } from 'react'
+import { useContext ,useState } from 'react'
 import { motion } from 'framer-motion'
 import useProduct from './useProduct'
-import useCounterStore from './Store'
+import useCounterStore from './store'
 import productContext from './productContext'
 import useProductCounterStore from './productCounterSotre'
 import { FaHeart } from "react-icons/fa6";
-import { useState } from 'react'
 import favoriteContext from '../Pages/favorite/favoriteContext'
 import useFavoriteCounter from '../Pages/favorite/favoriteStore'
 import addFavorite from '../Pages/favorite/addFavorite'
-import { Link } from 'react-router-dom'
 import addCard from './addCard'
 const Products = () => {
   const { increment } = useCounterStore()
