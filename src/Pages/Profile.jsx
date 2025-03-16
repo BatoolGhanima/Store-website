@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { authContext } from "./auth/AuthProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import myImage from './images/bgForm.jpg'
@@ -10,7 +10,10 @@ import { FaShopify } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { ImFacebook2 } from "react-icons/im";
 import { FaConnectdevelop } from "react-icons/fa6";
+
 export default function FormComponent() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const {
     register,
     handleSubmit,
@@ -18,6 +21,10 @@ export default function FormComponent() {
   } = useForm();
   const { dispatch } = useContext(authContext)
   const onSubmit = async (data) => {
+    const un = localStorage.setItem('un', data.username)
+    const pw = localStorage.setItem('pw', data.password)
+    setUsername(un)
+    setPassword(pw)
     console.log(data);
     const response = await axios.post('https://dummyjson.com/auth/login', {
       username: data.username,
@@ -25,10 +32,10 @@ export default function FormComponent() {
 
     })
     dispatch({ type: 'Login', payload: response.data })
-    const u = localStorage.getItem('token')
-    console.log(u)
+    console.log(response.data.accessToken)
+    console.log('submited')
   };
-
+  const token = localStorage.getItem('token')
   return (
 
     <>
@@ -49,10 +56,15 @@ export default function FormComponent() {
             >
 
               <img src={myImage} alt="" className=" absolute" />
-              <div className=" relative  flex flex-col justify-center items-center bottom-0">
+              <div className=" relative  flex flex-col justify-center items-center text-white">
                 <h1 className="text-[30px] text-white font-bold">Welcome Back</h1>
-                <p>Sign in to continue your juourny with us</p>
+                <p >Sign in to continue your juourny with us</p>
+                <div className=" flex flex-col justify-center items-center mt-20">
+                  <h1 className="text-[30px] text-white font-bold"> user information </h1>
+                  <p className="text-xl text-gray-700 font-bold mb-2 text-[20px]"> Username :  <span className=" text-blue-600"> {localStorage.getItem('un')} </span></p>
+                  <p className="text-xl text-gray-700 font-bold mb-2 text-[20px]"> Username :  <span className=" text-blue-600"> {password}  </span></p>
 
+                </div>
               </div>
             </motion.div>
           </div>
@@ -85,9 +97,10 @@ export default function FormComponent() {
                   <label className="block text-gray-700">username</label>
                   <input
                     {...register("username")}
-                    className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 bg-blue-100 py-4 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     type="text"
                     placeholder="Enter your username"
+
                   />
                 </div>
 
@@ -102,7 +115,7 @@ export default function FormComponent() {
                         message: "Password must be at least 6 characters long",
                       },
                     })}
-                    className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full bg-blue-100 px-4 py-4 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     type="password"
                     placeholder="Enter your password"
                   />
@@ -112,7 +125,7 @@ export default function FormComponent() {
                   <div>
                     <input
                       type='checkbox'
-                      className="size-4 m-4 px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="size-4 m-4 px-4 py-4  mt-1 border rounded-lg focus:outline-none focus:ring-2 bg-blue-300 focus:ring-blue-500"
                       placeholder="Enter your password"
                     />
                     <label className=" text-gray-700">Remember me </label>
@@ -123,29 +136,31 @@ export default function FormComponent() {
 
 
                 {/* Submit Button */}
-                <button
-                  
-                  type="submit"
-                  className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
-                >
-                  submit
-                </button>
+                <Link to={'/'}>
+                  <button
 
+
+                    type="submit"
+                    className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+                  >
+
+                    submit
+                  </button>
+                </Link>
               </form>
               <div className="mt-6 w-full">
-                <p className=" text-gray-400 text-[10px] lg:text-[20px] " >___________________   <span className="text-[15px]">  or continue with  </span>  ___________________</p>
+                <p className=" text-gray-400 md:text-[15px] text-[10px] lg:text-[20px] " >___________________   <span className="text-[15px]">  or continue with  </span>  ___________________</p>
 
                 <div className="flex m-4 justify-around w-full ">
-                  <a href="" className=" text-[25px] lg:text-[40px] px-12  lg:px-16 py-1 border border-gray-200 rounded-lg">  <FcGoogle /> </a>
-                  <a href="" className=" text-[25px] lg:text-[40px] px-12 text-blue-500 px-16 py-1 border border-gray-200 rounded-lg">  <ImFacebook2 /></a>
-                  <a href="" className=" text-[25px] lg:text-[40px] px-12 lg:px-16 py-1 border border-gray-200 rounded-lg">  <FaConnectdevelop /> </a>
+                  <a href="" className=" text-[25px] lg:text-[40px] px-12  md:px-10  md:px-10 lg:px-16 py-1 border border-gray-200 rounded-lg">  <FcGoogle /> </a>
+                  <a href="" className=" text-[25px] lg:text-[40px] px-12 md:px-10 text-blue-500 px-16 py-1 border border-gray-200 rounded-lg">  <ImFacebook2 /></a>
+                  <a href="" className=" text-[25px] lg:text-[40px] px-12  md:px-10 lg:px-16 py-1 border border-gray-200 rounded-lg">  <FaConnectdevelop /> </a>
 
                 </div>
                 <p className="text-gray-500 mt-8"> Don't have an account ? <a href="#" className="text-blue-600"> Signin </a></p>
               </div>
 
             </motion.div>
-
 
           </div>
 

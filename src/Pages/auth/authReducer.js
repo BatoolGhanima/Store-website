@@ -7,7 +7,7 @@ switch(action.type){
     case 'Logout': localStorage.removeItem('token')
    
     return {
-        token: localStorage.getItem('item') || ''
+        token: localStorage.getItem('token') || ''
     }
 }
 }
