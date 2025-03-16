@@ -1,7 +1,7 @@
 import { useContext ,useState } from 'react'
 import { motion } from 'framer-motion'
 import useProduct from './useProduct'
-import useCounterStore from './store'
+import useCounterStore from './Store'
 import productContext from './productContext'
 import useProductCounterStore from './productCounterSotre'
 import { FaHeart } from "react-icons/fa6";
