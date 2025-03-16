@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import productContext from './products/productContext'
 import useProductCounterStore from './products/productCounterSotre';
 import { MdDelete } from "react-icons/md";
-import { useStore } from 'zustand';
 import useCounterStore from './products/Store';
 import { Link } from 'react-router-dom';
 function Card() {
