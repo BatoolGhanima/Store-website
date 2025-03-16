@@ -152,9 +152,9 @@ export default function FormComponent() {
                 <p className=" text-gray-400 md:text-[15px] text-[10px] lg:text-[20px] " >________________   <span className="text-[15px]">  or continue with  </span>  ________________</p>
 
                 <div className="flex m-4 justify-around w-full ">
-                  <a href="" className=" text-[25px] lg:text-[40px] px-12  md:px-10  md:px-10 lg:px-16 py-1 border border-gray-200 rounded-lg">  <FcGoogle /> </a>
-                  <a href="" className=" text-[25px] lg:text-[40px] px-12 md:px-10 text-blue-500 px-16 py-1 border border-gray-200 rounded-lg">  <ImFacebook2 /></a>
-                  <a href="" className=" text-[25px] lg:text-[40px] px-12  md:px-10 lg:px-16 py-1 border border-gray-200 rounded-lg">  <FaConnectdevelop /> </a>
+                  <a href="" className=" text-[25px]  lg:text-[40px] px-2  md:px-10  md:px-10 lg:px-16 py-1 border border-gray-200 rounded-lg">  <FcGoogle /> </a>
+                  <a href="" className=" text-[25px] lg:text-[40px] px-2 md:px-10 text-blue-500 px-16 py-1 border border-gray-200 rounded-lg">  <ImFacebook2 /></a>
+                  <a href="" className=" text-[25px] lg:text-[40px] px-2  md:px-10 lg:px-16 py-1 border border-gray-200 rounded-lg">  <FaConnectdevelop /> </a>
 
                 </div>
                 <p className="text-gray-500 mt-8"> Don't have an account ? <a href="#" className="text-blue-600"> Signin </a></p>
