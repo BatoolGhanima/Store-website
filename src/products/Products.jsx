@@ -31,7 +31,7 @@ const Products = () => {
 
   }
 
-
+  const nothing = "nothing";
 
 
 
