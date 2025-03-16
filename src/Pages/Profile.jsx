@@ -35,7 +35,7 @@ export default function FormComponent() {
     console.log(response.data.accessToken)
     console.log('submited')
   };
-  const token = localStorage.getItem('token')
+  
   return (
 
     <>
