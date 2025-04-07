@@ -165,7 +165,7 @@ export default function FormComponent() {
 
               </form>
               <div className="mt-6 w-full">
-                <p className=" text-gray-400 md:text-[15px] text-[10px] lg:text-[20px] " >________________   <span className="text-[15px]">  or continue with  </span>  ________________</p>
+                <p className=" text-gray-400 md:text-[15px] text-[10px] lg:text-[20px] " >  <span className="text-[15px]">  or continue with  </span> </p>
 
                 <div className="flex m-4 justify-around w-full ">
                   <a href="" className=" text-[25px]  lg:text-[40px] px-2  md:px-10  md:px-10 lg:px-16 py-1 border border-gray-200 rounded-lg">  <FcGoogle /> </a>
