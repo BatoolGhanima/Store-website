@@ -10,10 +10,22 @@ import { FaShopify } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { ImFacebook2 } from "react-icons/im";
 import { FaConnectdevelop } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'; // تأكد تضيف useEffect
 
 export default function FormComponent() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+
+
+  // داخل FormComponent
+  const { auth } = useContext(authContext); // تأكد إنك جبت auth من السياق
+  
+  useEffect(() => {
+    if (auth?.token) {
+      navigate('/'); // يوديه للرئيسية إذا عنده توكن
+    }
+  }, [auth, navigate]);
+  
   const {
     register,
     handleSubmit,
@@ -21,24 +33,29 @@ export default function FormComponent() {
   } = useForm();
   const { dispatch } = useContext(authContext)
   const onSubmit = async (data) => {
-    const un = localStorage.setItem('un', data.username)
-    const pw = localStorage.setItem('pw', data.password)
-    setUsername(un)
-    setPassword(pw)
-    console.log(data);
-    const response = await axios.post('https://dummyjson.com/auth/login', {
-      username: data.username,
-      password: data.password
-
-    })
-    dispatch({ type: 'Login', payload: response.data })
-    console.log(response.data.accessToken)
-    console.log('submited')
+    const username = data.username.trim();  // Remove any leading/trailing spaces
+    const password = data.password.trim();
+  
+    try {
+      const response = await axios.post('https://dummyjson.com/auth/login', {
+        username,
+        password,
+      });
+  
+      dispatch({ type: 'Login', payload: response.data });
+      console.log(response.data.accessToken);
+      navigate('/');
+    } catch (error) {
+      console.error('Login failed:', error.response ? error.response.data : error.message);
+    }
   };
+  
+  
   
   return (
 
     <>
+      
       {/* container div */}
       <center>
         <div className="flex w-3/4 m-10 rounded-xl border-gray-200 border shadow-lg h-[750px] ">
@@ -61,8 +78,8 @@ export default function FormComponent() {
                 <p >Sign in to continue your juourny with us</p>
                 <div className=" flex flex-col justify-center items-center mt-20">
                   <h1 className="text-[30px] text-white font-bold"> user information </h1>
-                  <p className="text-xl text-gray-700 font-bold mb-2 text-[20px]"> Username :  <span className=" text-blue-600"> {localStorage.getItem('un')} </span></p>
-                  <p className="text-xl text-gray-700 font-bold mb-2 text-[20px]"> Username :  <span className=" text-blue-600"> {password}  </span></p>
+                  {/* <p className="text-xl text-gray-700 font-bold mb-2 text-[20px]"> Username :  <span className=" text-blue-600"> {localStorage.getItem('un')} </span></p>
+                  <p className="text-xl text-gray-700 font-bold mb-2 text-[20px]"> Username :  <span className=" text-blue-600"> {password}  </span></p> */}
 
                 </div>
               </div>
@@ -97,6 +114,7 @@ export default function FormComponent() {
                   <label className="block text-gray-700">username</label>
                   <input
                     {...register("username")}
+                    name="username"
                     className="w-full px-4 bg-blue-100 py-4 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     type="text"
                     placeholder="Enter your username"
@@ -115,6 +133,7 @@ export default function FormComponent() {
                         message: "Password must be at least 6 characters long",
                       },
                     })}
+                    name="password"
                     className="w-full bg-blue-100 px-4 py-4 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     type="password"
                     placeholder="Enter your password"
@@ -136,17 +155,14 @@ export default function FormComponent() {
 
 
                 {/* Submit Button */}
-                <Link to={'/'}>
-                  <button
+                <button
+  type="submit"
+  className="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+>
+  Submit
+</button>
 
 
-                    type="submit"
-                    className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
-                  >
-
-                    submit
-                  </button>
-                </Link>
               </form>
               <div className="mt-6 w-full">
                 <p className=" text-gray-400 md:text-[15px] text-[10px] lg:text-[20px] " >________________   <span className="text-[15px]">  or continue with  </span>  ________________</p>

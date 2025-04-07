@@ -5,8 +5,12 @@ import authReducer from "./authReducer"
 export const authContext = createContext()
 const AuthProvider = ({ children }) => {
 
-    const [auth, dispatch] = useReducer(authReducer, {})
-
+    const initialState = {
+        token: localStorage.getItem('token') || null
+      }
+      
+      const [auth, dispatch] = useReducer(authReducer, initialState)
+      
     return (
         <authContext.Provider value={{ auth, dispatch }}>
             {children}

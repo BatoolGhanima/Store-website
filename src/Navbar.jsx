@@ -6,6 +6,7 @@ import useCounterStore from "./products/store";
 import useFavoriteCounter from "./Pages/favorite/favoriteStore";
 import { FaShoppingCart } from "react-icons/fa";
 import favoriteSideBarContext from './Pages/favorite/favoriteSideBarContext'
+import Logout from "./Pages/Logout";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,7 +70,7 @@ const Navbar = () => {
           </button>
 
         </div>
-
+        <Logout></Logout>
       </div>
 
       {/* sideBar for small screens */}
@@ -115,9 +116,10 @@ const Navbar = () => {
           >
             <span className="text-lg hover:text-gray-300 "> Favorite {favoriteCounter} </span>
           </button>
-
+          <Logout></Logout>
         </motion.div>
       )}
+      
 
 
     </nav>

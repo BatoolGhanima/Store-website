@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import './homeStyle.css'
 import myImage from '../images/product.jpg'
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import   { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import useProduct from '../../products/useProduct';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useContext } from 'react'
@@ -11,7 +11,10 @@ import useCounterStore from '../../products/store';
 import productContext from '../../products/productContext'
 import useProductCounterStore from '../../products/productCounterSotre'
 import 'swiper/css'
-
+import 'swiper/css/bundle';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/scrollbar'
 
 const Home = () => {
 
@@ -72,8 +75,8 @@ const Home = () => {
             <Swiper
 
               modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={15}
-              slidesPerView={1}
+              spaceBetween={5}
+              slidesPerView={3}
               navigation={false}
               pagination={{ clickable: false }}
               centeredSlides={true}
@@ -97,7 +100,7 @@ const Home = () => {
                       transition={{ duration: 2, delay: index * 0.1 }}
                     >
                       <div
-                        className='w-[300px] bg-gray-800 m-2 p-6 border-gray-200 border-[2px] rounded-lg  shadow-lg hover:shadow-xl transition-all md:w-[450px]  h-[490px]'>
+                        className='w-[300px] bg-gray-800 m-2 p-6 border-gray-200 border-[2px] rounded-lg  shadow-lg hover:shadow-xl transition-all md:w-[450px]  h-[550px]'>
                         <div className=''>
                           <img src={p.images[0]} alt={p.title} className='self-center size-auto md:h-[200px] md:hover:h-[220px] transition-all' />
                         </div>
